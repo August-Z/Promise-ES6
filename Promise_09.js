@@ -3,7 +3,6 @@
     Promise
         .race([requestImg(), timeOut()])
         .then(value => {
-            console.log(value);
             $('body,html').css({
                 backgroundImage: `url(${value})`,
             });
