@@ -8,15 +8,16 @@
     function runAsync() {
 
         const p = new Promise((resolve, reject) => {
-
             // 做一些异步操作
             setTimeout(() => {
                 console.log('执行完成');
                 resolve('Query OK ！');
-            })
+            },2000)
+        });
 
-        })
-
+        return p;
     }
+
+    runAsync(); //调用
 
 })();
