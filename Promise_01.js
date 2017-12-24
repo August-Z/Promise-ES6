@@ -12,7 +12,7 @@
         setTimeout(() => {
             console.log('执行完成');
             resolve('Query Ok !');
-        })
+        },2000);
 
     });
 
