@@ -1,6 +1,8 @@
 # Promise-ES6 小结 
 Promise 作为 ES6 最重要的特性之一。用于一个异步操作的最终完成（或失败）及其结果值的表示：即处理异步请求。我们经常会做些承诺，如果我赢了你就嫁给我，如果输了我就嫁给你之类的诺言。这就是promise的中文含义：诺言，一个成功，一个失败！
 
+***如果可能，建议阅读相应的 js 代码***
+
 ## Promise 构造函数
 一般来说 Promise 对象会作为函数的返回值进行调用，它具有两个参数 resolve 与 reject。我们可以这样封装：
 ```javascript
@@ -83,21 +85,25 @@ function runAsync() {
             console.log(reason);
         });
 
-    function getNumber() {
-        const p = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const num = Math.ceil(Math.random() * 10);
-
-                if (num <= 5) {
-                    resolve(num);
-                } else {
-                    reject("数字太大了");
-                }
-
-            }, 1000);
-        });
-        return p;
-    }
-
 })();
+```
+
+## all() 与 race() 并行执行异步任务
+不仅仅的优雅的链式操作与清晰的状态管理，Promise 提供了两种不同赛跑规则的并行方法，它们分别以多个异步任务"最快"与"最慢"为准执行 resolve 回调。
+```javascript
+    Promise
+        .all([Async_01(), Async_02(), Async_03()])
+        .then(result => {
+            console.log(result);
+            /**
+             * Console:
+             * 第一个异步任务执行完成
+             * 第二个异步任务执行完成
+             * 第三个异步任务执行完成
+             * ['随便什么数据01','随便什么数据02','随便什么数据03']
+             */
+        })
+        .catch(reason => {
+            console.log(reason);
+        });
 ```
