@@ -3,7 +3,7 @@
  * 我们传进去的函数就已经执行，这是一个需要注意的细节。所以用 Promise 一般都是包在一个函数中
  * 然后运行这个函数。
  */
-export default (function () {
+(function () {
 
     function runAsync() {
 
